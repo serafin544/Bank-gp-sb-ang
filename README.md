@@ -18,3 +18,11 @@ main tasks:
     Task 3: Create the Restful endpoint for Bills
     Task 4: Create the Restful endpoint for Deposits
     Task 5: Create the Restful endpoint for Withdrawals
+
+
+
+
+
+
+
+![alt text](https://www.clipartmax.com/png/middle/187-1872669_spongebob-squarepants-mr-krabs-with-money.png)
