@@ -1,7 +1,11 @@
 # BANK ADBS
 Banking project
-Team Members:
- Aubrey David Bailey Serafin
+
+    Team Members:
+    Aubrey 
+    David 
+    Bailey 
+    Serafin
 
 
 ## TASKS
