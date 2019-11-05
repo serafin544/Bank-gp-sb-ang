@@ -1,7 +1,8 @@
-# Bank-gp-sb-ang
-
 # BANK ADBS
 Banking project
+Team Members:
+ Aubrey David Bailey Serafin
+
 
 ## TASKS
 main tasks:
