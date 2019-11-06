@@ -1,7 +1,15 @@
 package com.example.bankADBS.domains;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Account {
 
+
+    //Different id from Customer and Address
+    @Id
     private long id;
     private Enum type;
     private String nickname;

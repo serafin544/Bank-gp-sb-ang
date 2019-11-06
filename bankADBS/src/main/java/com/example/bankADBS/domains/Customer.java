@@ -1,13 +1,20 @@
 package com.example.bankADBS.domains;
 
-<<<<<<< HEAD
-public class Customer {
-=======
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Set;
 
-
+@Entity
 public class Customer {
+
+    //Same id as the address and not the Account
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+
     private String firstName;
     private String lastName;
     private Set<Address> addressSet;
@@ -47,5 +54,5 @@ public class Customer {
     public void setAddressSet(Set<Address> addressSet) {
         this.addressSet = addressSet;
     }
->>>>>>> 1449ab2c7746e2a1ab8e5be0218b1ed447cc5f2f
+
 }

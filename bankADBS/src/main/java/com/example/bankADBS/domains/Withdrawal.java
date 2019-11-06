@@ -1,30 +1,23 @@
 package com.example.bankADBS.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Withdrawal {
 
-  //unique identifier for withdrawal
-  private Long id;
 
-  //type of transaction (pending, cancelled, completed)
-  private String type;
 
-  //timestamp of deposit execution
-  private String transactionDate;
 
-  //status of withdrawal (pending, cancelled, completed)
-  private String status;
-
-  //id of account executing withdrawal
-  private Long payerId;
-
-  //type of withdrawal (balance, rewards)
-  private String medium;
-
-  //withdrawal amount
-  private Double amount;
-
-  //description of withdrawal
-  private String description;
+  @Id
+  private Long id; //unique identifier for withdrawal
+  private String type; //type of transaction (pending, cancelled, completed)
+  private String transactionDate; //timestamp of deposit execution
+  private String status; //status of withdrawal (pending, cancelled, completed)
+  private Long payerId; //id of account executing withdrawal
+  private String medium; //type of withdrawal (balance, rewards)
+  private Double amount;  //withdrawal amount
+  private String description; //description of withdrawal
 
   public Long getId() {
     return id;
