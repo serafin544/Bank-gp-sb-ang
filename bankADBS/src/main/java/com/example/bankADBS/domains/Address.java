@@ -1,5 +1,6 @@
 package com.example.bankADBS.domains;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ public class Address {
     @GeneratedValue
     @Column(name="ADDRESS_ID")
     private Long id;
+
 
     @Column(name="STREET_NUMBER")
     private String streetNumber;

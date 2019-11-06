@@ -1,6 +1,12 @@
 package com.example.bankADBS.domains;
 
+
 import javax.persistence.*;
+
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 
 @Entity
 public class Account {
@@ -8,6 +14,7 @@ public class Account {
     @GeneratedValue
     @Column(name="ACCOUNT_ID")
     private Long id;
+
 
     @Column(name="TYPE")
     private Enum type;
