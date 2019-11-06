@@ -3,11 +3,13 @@ package com.example.bankADBS.services;
 import com.example.bankADBS.domains.Address;
 import com.example.bankADBS.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AddressService {
 
     @Autowired

@@ -1,38 +1,63 @@
 package com.example.bankADBS.domains;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Bills {
 
-  //bill unique identifier
-  private Long id;
+  @Id
+  @GeneratedValue
+  @Column(name="BILLS_ID")
+  private Long id; //bill unique identifier
 
-  //enumerated value showing bill status (pending, cancelled, completed, recurring)
-  private String status;
+  @Column(name="STATUS")
+  private String status;   //enumerated value showing bill status (pending, cancelled, completed, recurring)
 
-  //place bill will be paid to
-  private String payee;
+  @Column(name="PAYEE")
+  private String payee; //place bill will be paid to
 
-  //nickname of bill to help identify it
-  private String nickname;
+  @Column(name="NICKNAME")
+  private String nickname;  //nickname of bill to help identify it
 
-  //date bill was created
-  private String creationDate;
+  @Column(name="CREATION_DATE")
+  private String creationDate;//date bill was created
 
-  //date bill is going to be paid or was paid
-  private String paymentDate;
+  @Column(name="PAYMENT_DATE")
+  private String paymentDate;  //date bill is going to be paid or was paid
 
-  //date bill recurs monthly
-  private Integer recurringDate;
+  @Column(name="RECURRING_DATE")
+  private Integer recurringDate;  //date bill recurs monthly
 
-  //next bill payment date
-  private String upcomingPaymentDate;
+  @Column(name="UPCOMING_PAYMENT_DATE")
+  private String upcomingPaymentDate;  //next bill payment date
 
-  //amount of payment
-  private Double paymentAmount;
+  @Column(name="PAYMENT_AMOUNT")
+  private Double paymentAmount;  //amount of payment
 
-  //id account will be associated
-  private String accountId;
+  @Column(name="ACCOUNT_ID")
+  private String accountId;  //id account will be associated
 
+  public Bills(){
 
+  }
+
+  public Bills(Long id, String status, String payee, String nickname, String creationDate, String paymentDate,
+               Integer recurringDate, String upcomingPaymentDate, Double paymentAmount, String accountId)
+  {
+    this.id = id;
+    this.status = status;
+    this.payee = payee;
+    this.nickname = nickname;
+    this.creationDate = creationDate;
+    this.paymentDate = paymentDate;
+    this.recurringDate = recurringDate;
+    this.upcomingPaymentDate = upcomingPaymentDate;
+    this.paymentAmount = paymentAmount;
+    this.accountId = accountId;
+  }
 
   public Long getId() {
     return id;
