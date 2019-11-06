@@ -27,10 +27,10 @@ public class BillController {
 
 
 
-  @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
+ /* @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
   public Optional<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
     return accountService.getAllCustomerAccounts(customerService.getCustomerById(billService.getBillsById(id)));
-  }
+  }*/
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/bills/{billId}")
@@ -39,10 +39,11 @@ public class BillController {
   }
 
 
+
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
+
   public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
     return billService.getAllBills(customerService.getCustomerById(id));
-  }
 
 
 
