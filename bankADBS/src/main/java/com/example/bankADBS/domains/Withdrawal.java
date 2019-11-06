@@ -1,6 +1,8 @@
 package com.example.bankADBS.domains;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -10,13 +12,29 @@ public class Withdrawal {
 
 
   @Id
+  @GeneratedValue
+  @Column(name = "WITHDRAW_ID")
   private Long id; //unique identifier for withdrawal
+
+  @Column(name = "TYPE")
   private String type; //type of transaction (pending, cancelled, completed)
+
+  @Column(name = "TRANSACTION_DATE")
   private String transactionDate; //timestamp of deposit execution
+
+  @Column(name = "STATUS")
   private String status; //status of withdrawal (pending, cancelled, completed)
+
+  @Column(name = "PAYER_ID")
   private Long payerId; //id of account executing withdrawal
+
+  @Column(name = "MEDIUM")
   private String medium; //type of withdrawal (balance, rewards)
+
+  @Column(name = "AMOUNT")
   private Double amount;  //withdrawal amount
+
+  @Column(name = "DESCRIPTION")
   private String description; //description of withdrawal
 
   public Long getId() {

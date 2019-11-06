@@ -71,4 +71,13 @@ public class Customer {
         this.addressSet = addressSet;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", addressSet=" + addressSet +
+                '}';
+    }
 }

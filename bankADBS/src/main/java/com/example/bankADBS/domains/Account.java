@@ -91,4 +91,16 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", type=" + type +
+                ", nickname='" + nickname + '\'' +
+                ", rewards=" + rewards +
+                ", balance=" + balance +
+                ", customer=" + customer +
+                '}';
+    }
 }
