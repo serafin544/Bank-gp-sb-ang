@@ -45,7 +45,7 @@ public class BillController {
   public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
     return billService.getAllBills(customerService.getCustomerById(id));
 
-
+  }
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
   public void addBill(@RequestBody Bills bills){
