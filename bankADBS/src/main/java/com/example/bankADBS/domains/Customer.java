@@ -1,8 +1,6 @@
 package com.example.bankADBS.domains;
 
-<<<<<<< HEAD
-public class Customer {
-=======
+
 import java.util.Set;
 
 
@@ -47,5 +45,5 @@ public class Customer {
     public void setAddressSet(Set<Address> addressSet) {
         this.addressSet = addressSet;
     }
->>>>>>> 1449ab2c7746e2a1ab8e5be0218b1ed447cc5f2f
+
 }
