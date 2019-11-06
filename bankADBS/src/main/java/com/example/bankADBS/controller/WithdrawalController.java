@@ -16,28 +16,38 @@ public class WithdrawalController {
   @Autowired
   private WithdrawalService withdrawalService;
 
+
+
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/withdrawals")
   public List<Withdrawal> getAllWithdrawals(){
     return withdrawalService.getAllWithdrawals();
   }
 
+
+
   @RequestMapping(method = RequestMethod.GET, value = "/withdrawals/{withdrawalId}")
-  public Optional<Withdrawal> getWithdrawalById(String id){
+  public Optional<Withdrawal> getWithdrawalById(@PathVariable long id){
     return withdrawalService.getWithdrawalById(id);
   }
+
+
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/withdrawals")
   public void addWithdrawal(@RequestBody Withdrawal withdrawal){
     withdrawalService.addWithdrawal(withdrawal);
   }
 
+
+
   @RequestMapping(method = RequestMethod.PUT, value = "/withdrawals/{withdrawalId}")
-  public void updateWithdrawal(@PathVariable String id, @RequestBody Withdrawal withdrawal){
+  public void updateWithdrawal(@PathVariable long id, @RequestBody Withdrawal withdrawal){
     withdrawalService.updateWithdrawal(id, withdrawal);
   }
 
+
+
   @RequestMapping(method = RequestMethod.DELETE, value = "/withdrawals/{withdrawalId}")
-  public void deleteWithdrawal(@PathVariable String id) {
+  public void deleteWithdrawal(@PathVariable long id) {
     withdrawalService.deleteWithdrawal(id);
   }
 
