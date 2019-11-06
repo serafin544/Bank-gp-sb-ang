@@ -18,7 +18,7 @@ public class BillService {
 
 
   //get all bills for specific account
-  public List<Bills> getAllBills(){
+  public List<Bills> getAllBills(Optional<Customer> customerById){
     List<Bills> listOfBills = new ArrayList<>();
     billRepository.findAll().forEach(listOfBills::add);
     return listOfBills;
