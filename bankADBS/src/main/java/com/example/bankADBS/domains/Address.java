@@ -1,8 +1,18 @@
 package com.example.bankADBS.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Address {
 
+    //Share the same id as the Customer and not the Account
+    @Id
+    //@GeneratedValue()
     private long id;
+
+
     private String streetNumber;
     private String streetName;
     private String city;
