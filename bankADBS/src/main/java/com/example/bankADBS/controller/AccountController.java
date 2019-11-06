@@ -1,7 +1,6 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Account;
-import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,8 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts")
-    public List<Account> getAllAccts(){
-        return accountService.getAllAccounts();
+    public List<Account> getAllAccts(Account account){
+        return accountService.getAllAccounts(account);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}")
     public Optional<Account> getById(@PathVariable Long id){
