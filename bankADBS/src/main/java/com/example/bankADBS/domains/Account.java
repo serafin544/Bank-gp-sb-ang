@@ -1,21 +1,48 @@
 package com.example.bankADBS.domains;
 
 
+import javax.persistence.*;
+
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
 @Entity
 public class Account {
-
-
-    //Different id from Customer and Address
     @Id
-    private long id;
+    @GeneratedValue
+    @Column(name="ACCOUNT_ID")
+    private Long id;
+
+
+    @Column(name="TYPE")
     private Enum type;
+
+    @Column(name="NICKNAME")
     private String nickname;
+
+    @Column(name="REWARDS")
     private int rewards;
+
+    @Column(name="BALANCE")
     private double balance;
+
+    @ManyToOne
+    @JoinColumn(name="CUSTOMER_ID")
     private Customer customer;
+
+    public Account() {
+    }
+
+    public Account(long id, Enum type, String nickname, int rewards, double balance, Customer customer) {
+        this.id = id;
+        this.type = type;
+        this.nickname = nickname;
+        this.rewards = rewards;
+        this.balance = balance;
+        this.customer = customer;
+    }
 
     public long getId() {
         return id;
@@ -64,7 +91,4 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-
-
 }

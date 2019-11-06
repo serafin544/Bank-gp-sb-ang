@@ -1,26 +1,42 @@
 package com.example.bankADBS.domains;
 
+
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import java.util.Set;
 
 @Entity
 public class Customer {
 
-    //Same id as the address and not the Account
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Id
+    @GeneratedValue
+    @Column(name="CUSTOMER_ID")
+    private Long id;
 
-
+    @Column(name="FIRST_NAME")
     private String firstName;
+
+    @Column(name="LAST_NAME")
     private String lastName;
+
+    @ElementCollection
+    @OneToMany
+    @JoinColumn(name="ADDRESS_ID")
     private Set<Address> addressSet;
 
+    public Customer() {
+    }
 
-
+    public Customer(long id, String firstName, String lastName, Set<Address> addressSet) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.addressSet = addressSet;
+    }
 
 
     public long getId() {
