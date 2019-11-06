@@ -4,6 +4,7 @@ package com.example.bankADBS.services;
 import com.example.bankADBS.domains.Account;
 
 
+import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,8 @@ public class AccountService {
     @Autowired
     private AccountService accountService;
 
-// Get All Accounts
-    public List<Account> getAllAccounts(){
+// Get All Customer Accounts
+    public List<Account> getAllCustomerAccounts(Optional<Customer> customerById){
         List<Account> accountList = new ArrayList<>();
         accountRepository.findAll().forEach(accountList::add);
         return accountList;
@@ -57,9 +58,9 @@ public class AccountService {
     }
 
 
-
-
-
-
-
+    public List<Account> getAllAccounts(Account account) {
+        List<Account> accountList = new ArrayList<>();
+        accountRepository.findAll().forEach(accountList::add);
+        return accountList;
+    }
 }
