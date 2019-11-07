@@ -1,6 +1,5 @@
 package com.example.bankADBS.controller;
 
-import com.example.bankADBS.domains.Account;
 import com.example.bankADBS.domains.Bills;
 import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.services.AccountService;
@@ -22,10 +21,12 @@ public class BillController {
 
 
 
+
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
   public List<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
     return billService.allBillsByAccountId(id);
   }
+
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/bills/{billId}")
@@ -34,7 +35,9 @@ public class BillController {
   }
 
 
+
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
+
   public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
     return billService.allBillsByCustomerId(id);
   }
