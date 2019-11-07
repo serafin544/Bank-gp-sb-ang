@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 @Entity
 public class Deposit {
+
     @Id
-    @GeneratedValue
     @Column(name="DEPOSIT_ID")
     private Long id;
 
@@ -50,7 +50,7 @@ public class Deposit {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

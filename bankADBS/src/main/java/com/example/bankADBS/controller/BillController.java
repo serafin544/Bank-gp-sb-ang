@@ -17,29 +17,24 @@ public class BillController {
   @Autowired
   private BillService billService;
 
-
-
-  @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
-  public List<Bills> getAllBillsForSpecificAccount(@PathVariable Long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
+  public List<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
     return billService.allBillsByAccountId(id);
   }
 
-
-  @RequestMapping(method = RequestMethod.GET, value = "/bills/{id}")
-  public Optional<Bills> getBillsById(@PathVariable Long id){
+  @RequestMapping(method = RequestMethod.GET, value = "/bills/{billId}")
+  public Optional<Bills> getBillsById(@PathVariable long id){
     return billService.getBillsById(id);
   }
 
+  @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
 
-  @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/bills")
-  public List<Bills> getAllBillsForCustomerById(@PathVariable Long id, @RequestBody Bills bills){
+  public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
     return billService.allBillsByCustomerId(id);
   }
 
-
-
-  @RequestMapping(method = RequestMethod.POST, value = "/accounts/{id}/bills")
-  public void addBill(@PathVariable Long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
+  public void addBill(@RequestBody Bills bills)}
     billService.addBill(bills);
   }
 
@@ -54,4 +49,5 @@ public class BillController {
   public void deleteBill(@PathVariable Long id) {
     billService.deleteBill(id);
   }
+
 }

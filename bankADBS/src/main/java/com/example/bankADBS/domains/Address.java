@@ -1,18 +1,15 @@
 package com.example.bankADBS.domains;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Address {
-    @Id
-    @GeneratedValue
-    @Column(name="ADDRESS_ID")
-    private Long _id;
 
+    @Id
+    @Column(name="ADDRESS_ID")
+    private Long id;
 
     @Column(name="STREET_NUMBER")
     private String streetNumber;
@@ -32,8 +29,8 @@ public class Address {
     public Address() {
     }
 
-    public Address(Long _id, String streetNumber, String streetName, String city, String state, String zip) {
-        this._id = _id;
+    public Address(Long id, String streetNumber, String streetName, String city, String state, String zip) {
+        this.id = id;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.city = city;
@@ -41,12 +38,12 @@ public class Address {
         this.zip = zip;
     }
 
-    public long getId() {
-        return _id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(long id) {
-        this._id = _id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreetNumber() {
