@@ -7,14 +7,12 @@ import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.BillService;
 import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class BillController {
 
   @Autowired
@@ -22,39 +20,39 @@ public class BillController {
 
 
 
-  @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
-  public List<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
+  public List<Bills> getAllBillsForSpecificAccount(@PathVariable Long id, @RequestBody Bills bills){
     return billService.allBillsByAccountId(id);
   }
 
 
-  @RequestMapping(method = RequestMethod.GET, value = "/bills/{billId}")
-  public Optional<Bills> getBillsById(@PathVariable long id){
+  @RequestMapping(method = RequestMethod.GET, value = "/bills/{id}")
+  public Optional<Bills> getBillsById(@PathVariable Long id){
     return billService.getBillsById(id);
   }
 
 
-  @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
-  public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/bills")
+  public List<Bills> getAllBillsForCustomerById(@PathVariable Long id, @RequestBody Bills bills){
     return billService.allBillsByCustomerId(id);
   }
 
 
 
-  @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
-  public void addBill(@RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.POST, value = "/accounts/{id}/bills")
+  public void addBill(@PathVariable Long id, @RequestBody Bills bills){
     billService.addBill(bills);
   }
 
 
-  @RequestMapping(method = RequestMethod.PUT, value = "/bills/{billId}")
-  public void updateBill(@PathVariable long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")
+  public void updateBill(@PathVariable Long id, @RequestBody Bills bills){
     billService.updateBill(id, bills);
   }
 
 
-  @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{billsId}")
-  public void deleteBill(@PathVariable long id) {
+  @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{id}")
+  public void deleteBill(@PathVariable Long id) {
     billService.deleteBill(id);
   }
 }
