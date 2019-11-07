@@ -26,7 +26,7 @@ public class WithdrawalController {
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/withdrawals/{withdrawalId}")
-  public Optional<Withdrawal> getWithdrawalById(@PathVariable long id){
+  public Optional<Withdrawal> getWithdrawalById(@PathVariable Long id){
     return withdrawalService.getWithdrawalById(id);
   }
 

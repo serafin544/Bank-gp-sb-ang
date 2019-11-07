@@ -11,7 +11,7 @@ public class Address {
     @Id
     @GeneratedValue
     @Column(name="ADDRESS_ID")
-    private Long id;
+    private Long _id;
 
 
     @Column(name="STREET_NUMBER")
@@ -32,8 +32,8 @@ public class Address {
     public Address() {
     }
 
-    public Address(long id, String streetNumber, String streetName, String city, String state, String zip) {
-        this.id = id;
+    public Address(Long _id, String streetNumber, String streetName, String city, String state, String zip) {
+        this._id = _id;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.city = city;
@@ -42,11 +42,11 @@ public class Address {
     }
 
     public long getId() {
-        return id;
+        return _id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this._id = _id;
     }
 
     public String getStreetNumber() {
@@ -92,7 +92,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id=" + id +
+                "id=" + _id +
                 ", streetNumber='" + streetNumber + '\'' +
                 ", streetName='" + streetName + '\'' +
                 ", city='" + city + '\'' +

@@ -1,6 +1,5 @@
 package com.example.bankADBS.controller;
 
-import com.example.bankADBS.domains.Account;
 import com.example.bankADBS.domains.Bills;
 import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.services.AccountService;
