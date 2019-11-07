@@ -1,10 +1,7 @@
 package com.example.bankADBS.domains;
 
-
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.util.Set;
@@ -13,7 +10,6 @@ import java.util.Set;
 public class Customer {
 
     @Id
-    @GeneratedValue
     @Column(name="CUSTOMER_ID")
     private Long id;
 
@@ -31,7 +27,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(long id, String firstName, String lastName, Set<Address> addressSet) {
+    public Customer(Long id, String firstName, String lastName, Set<Address> addressSet) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,11 +35,11 @@ public class Customer {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

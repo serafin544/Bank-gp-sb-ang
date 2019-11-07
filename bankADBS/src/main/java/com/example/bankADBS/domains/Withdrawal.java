@@ -2,17 +2,12 @@ package com.example.bankADBS.domains;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Withdrawal {
 
-
-
-
   @Id
-  @GeneratedValue
   @Column(name = "WITHDRAW_ID")
   private Long id; //unique identifier for withdrawal
 

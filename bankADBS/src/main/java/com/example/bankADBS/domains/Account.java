@@ -1,20 +1,17 @@
 package com.example.bankADBS.domains;
 
-
 import javax.persistence.*;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
 @Entity
 public class Account {
+
     @Id
-    @GeneratedValue
     @Column(name="ACCOUNT_ID")
     private Long id;
-
 
     @Column(name="TYPE")
     private Enum type;
@@ -35,7 +32,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(long id, Enum type, String nickname, int rewards, double balance, Customer customer) {
+    public Account(Long id, Enum type, String nickname, int rewards, double balance, Customer customer) {
         this.id = id;
         this.type = type;
         this.nickname = nickname;
@@ -44,11 +41,9 @@ public class Account {
         this.customer = customer;
     }
 
-    public long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

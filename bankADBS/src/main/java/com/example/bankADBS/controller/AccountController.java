@@ -21,28 +21,28 @@ public class AccountController {
     public List<Account> getAllAccts(Account account){
         return accountService.getAllAccounts(account);
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}")
     public Optional<Account> getById(@PathVariable Long id){
         return accountService.getById(id);
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerid}/accounts")
+
+    @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/accounts")
     public List<Account> getAcctForCust(@PathVariable Long id){
         return accountService.getAllCustomerAccounts(customerService.getCustomerById(id));
     }
 
-  @RequestMapping(method = RequestMethod.POST, value = "/customers/{customerid}/accounts")
-    public void addAccount(@RequestBody Account account){accountService.addAccount(account);
+    @RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/accounts")
+        public void addAccount(@RequestBody Account account) {accountService.addAccount(account); }
 
-  }
-
-    @RequestMapping(method = RequestMethod.PUT, value = "/accounts/{accountid}")
-public void updateAccount(@PathVariable Long id, @RequestBody Account account) {
+    @RequestMapping(method = RequestMethod.PUT, value = "/accounts/{id}")
+    public void updateAccount(@PathVariable Long id, @RequestBody Account account) {
         accountService.updateAccount(account, id);
     }
-    @RequestMapping(method = RequestMethod.DELETE, value = "/accounts/{accountid}")
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/accounts/{id}")
     public void delAccount(@RequestBody Long id){
       accountService.delAccount(id);
     }
-
 
 }

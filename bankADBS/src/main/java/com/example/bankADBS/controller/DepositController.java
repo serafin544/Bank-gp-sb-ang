@@ -14,27 +14,27 @@ public class DepositController {
     private DepositService depositService;
 
     @RequestMapping(method=RequestMethod.GET, value="/accounts/{accountId}/deposits")
-    public List<Deposit> getAllDeposits(@PathVariable String accountId){
+    public List<Deposit> getAllDeposits(@PathVariable Long accountId){
         return depositService.getAllDeposits(accountId);
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/deposits/{depositId}")
-    public Optional<Deposit> getDeposit(@PathVariable String depositId){
+    public Optional<Deposit> getDeposit(@PathVariable Long depositId){
         return depositService.getDepositById(depositId);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/accounts/{accountId}/deposits")
-    public void addDeposit(@RequestBody Deposit deposit){
-        depositService.addDeposit(deposit, deposit.getPayee_id());
+    public void addDeposit(@RequestBody Deposit deposit, @PathVariable Long accountId){
+       depositService.addDeposit(deposit, accountId);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/deposits/{depositId}")
-    public void updateDeposit(@RequestBody Deposit deposit, @PathVariable String depositId){
+    public void updateDeposit(@RequestBody Deposit deposit, @PathVariable Long depositId){
         depositService.updateDeposit(deposit, depositId);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/deposits/{depositId}")
-    public void deleteDeposit(@PathVariable String depositId){
+    public void deleteDeposit(@PathVariable Long depositId){
         depositService.deleteDeposit(depositId);
     }
 }

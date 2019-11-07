@@ -14,25 +14,25 @@ public class DepositService {
     @Autowired
     private Depository depository;
 
-    public List<Deposit> getAllDeposits(String accountId) {
+    public List<Deposit> getAllDeposits(Long accountId) {
         List<Deposit> listOfDeposits = new ArrayList<>();
         depository.findAll().forEach(listOfDeposits::add);
         return listOfDeposits;
     }
 
-    public Optional<Deposit> getDepositById(String depositId) {
+    public Optional<Deposit> getDepositById(Long depositId) {
         return depository.findById(depositId);
     }
 
-    public void addDeposit(Deposit deposit, long accountId) {
+    public void addDeposit(Deposit deposit, Long accountId) {
         depository.save(deposit);
     }
 
-    public void updateDeposit(Deposit deposit, String depositId) {
+    public void updateDeposit(Deposit deposit, Long depositId) {
         depository.save(deposit);
     }
 
-    public void deleteDeposit(String depositId) {
+    public void deleteDeposit(Long depositId) {
         depository.deleteById(depositId);
     }
 }
