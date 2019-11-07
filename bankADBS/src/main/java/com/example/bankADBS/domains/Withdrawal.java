@@ -12,7 +12,6 @@ public class Withdrawal {
 
 
   @Id
-  @GeneratedValue
   @Column(name = "WITHDRAW_ID")
   private Long _id; //unique identifier for withdrawal
 

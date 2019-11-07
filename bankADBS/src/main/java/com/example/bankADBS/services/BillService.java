@@ -14,6 +14,52 @@ import java.util.Optional;
 @Service
 public class BillService {
 
+  @Autowired
+  private BillRepository billRepository;
+
+
+
+  //get all bills for specific account
+  public List<Bills> allBillsByAccountId(Long accountId){
+    List<Bills> listOfBills = new ArrayList<>();
+    billRepository.findAll().forEach(listOfBills::add);
+    return listOfBills;
+  }
+
+
+
+  //get bill by id
+  public Optional<Bills> getBillsById(Long id){
+    return billRepository.findById(id);
+  }
+
+
+
+  //get all bills for customer
+  public List<Bills> allBillsByCustomerId(Long customerId) {
+    List<Bills> allBillsByCustomerId = new ArrayList<>();
+    billRepository.findAll().forEach(allBillsByCustomerId::add);
+    return allBillsByCustomerId;
+  }
+
+
+  //create a bill
+  public void addBill(Bills bills) {
+    billRepository.save(bills);
+  }
+
+
+  //update a specific existing bill
+  public void updateBill(Long id, Bills bills) {
+    billRepository.save(bills);
+  }
+
+
+  //delete a specific existing bill
+  public void deleteBill(Long id) {
+    billRepository.deleteById(id);
+  }
+
 
 
 }
