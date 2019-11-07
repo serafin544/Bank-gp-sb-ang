@@ -19,8 +19,8 @@ public class CustomerController {
     AccountService accountService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/customer")
-    public List<Account> getCustomersAcct(@PathVariable Long id, @RequestBody Account account, @RequestBody Customer customer){
-        return accountService.getAllCustomerAccounts(customerService.getCustomerById(id));
+    public List<Account> getCustomersAcct(@PathVariable Long id){
+        return accountService.getAllCustomerAccounts(id);
     }
 
 

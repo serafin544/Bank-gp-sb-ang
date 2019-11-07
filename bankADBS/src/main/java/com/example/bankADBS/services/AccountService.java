@@ -26,9 +26,9 @@ public class AccountService {
     private AccountService accountService;
 
 // Get All Customer Accounts
-    public List<Account> getAllCustomerAccounts(Optional<Customer> customerById){
+    public List<Account> getAllCustomerAccounts(Long id){
         List<Account> accountList = new ArrayList<>();
-        accountRepository.findAll().forEach(accountList::add);
+        accountRepository.findAccountById(id).forEach(accountList::add);
         return accountList;
     }
 
@@ -37,10 +37,7 @@ public class AccountService {
         return accountRepository.findById(id);
     }
 
-    //Get Accounts For Customer
-   // public Optional<Customer> getByCustId(Long id){
-     //   return accountRepository.findById(id);
-    //}
+
 
 
     //Create Account

@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import com.example.bankADBS.domains.Type;
 @Entity
 public class Account {
 
@@ -13,8 +13,9 @@ public class Account {
     @Column(name="ACCOUNT_ID")
     private Long id;
 
-    @Column(name="TYPE")
-    private Enum type;
+    @Column(name="Type")
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Column(name="NICKNAME")
     private String nickname;
@@ -31,10 +32,11 @@ public class Account {
 
 
 
+
     public Account() {
     }
 
-    public Account(Long id, Enum type, String nickname, int rewards, double balance, Customer customer) {
+    public Account(Long id, Type type, String nickname, int rewards, double balance, Customer customer) {
         this.id = id;
         this.type = type;
         this.nickname = nickname;
@@ -53,7 +55,7 @@ public class Account {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(Type  type) {
         this.type = type;
     }
 
@@ -89,15 +91,4 @@ public class Account {
         this.customer = customer;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", type=" + type +
-                ", nickname='" + nickname + '\'' +
-                ", rewards=" + rewards +
-                ", balance=" + balance +
-                ", customer=" + customer +
-                '}';
-    }
 }
