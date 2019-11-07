@@ -6,14 +6,12 @@ import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.BillService;
 import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class BillController {
 
   @Autowired
@@ -36,19 +34,19 @@ public class BillController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
-  public void addBill(@RequestBody Bills bills){
+  public void addBill(@RequestBody Bills bills)}
     billService.addBill(bills);
   }
 
 
-  @RequestMapping(method = RequestMethod.PUT, value = "/bills/{billId}")
-  public void updateBill(@PathVariable long id, @RequestBody Bills bills){
+  @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")
+  public void updateBill(@PathVariable Long id, @RequestBody Bills bills){
     billService.updateBill(id, bills);
   }
 
 
-  @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{billsId}")
-  public void deleteBill(@PathVariable long id) {
+  @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{id}")
+  public void deleteBill(@PathVariable Long id) {
     billService.deleteBill(id);
   }
 

@@ -18,15 +18,15 @@ public class AccountController {
     private CustomerService customerService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts")
-    public List<Account> getAllAccts(Account account){
-        return accountService.getAllAccounts(account);
+    public List<Account> getAllAccts(Account accounts){
+        return accountService.getAllAccounts(accounts);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}")
     public Optional<Account> getById(@PathVariable Long id){
         return accountService.getById(id);
     }
-
+  
     @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/accounts")
     public List<Account> getAcctForCust(@PathVariable Long id){
         return accountService.getAllCustomerAccounts(customerService.getCustomerById(id));

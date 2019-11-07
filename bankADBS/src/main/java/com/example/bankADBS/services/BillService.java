@@ -18,23 +18,25 @@ public class BillService {
   private BillRepository billRepository;
 
 
-  //get all bills for specific account
 
-  public List<Bills> allBillsByAccountId(long accountId){
+  //get all bills for specific account
+  public List<Bills> allBillsByAccountId(Long accountId){
     List<Bills> listOfBills = new ArrayList<>();
     billRepository.findAll().forEach(listOfBills::add);
     return listOfBills;
   }
 
 
+
   //get bill by id
-  public Optional<Bills> getBillsById(long id){
+  public Optional<Bills> getBillsById(Long id){
     return billRepository.findById(id);
   }
 
 
+
   //get all bills for customer
-  public List<Bills> allBillsByCustomerId(long customerId) {
+  public List<Bills> allBillsByCustomerId(Long customerId) {
     List<Bills> allBillsByCustomerId = new ArrayList<>();
     billRepository.findAll().forEach(allBillsByCustomerId::add);
     return allBillsByCustomerId;
@@ -48,13 +50,13 @@ public class BillService {
 
 
   //update a specific existing bill
-  public void updateBill(long id, Bills bills) {
+  public void updateBill(Long id, Bills bills) {
     billRepository.save(bills);
   }
 
 
   //delete a specific existing bill
-  public void deleteBill(long id) {
+  public void deleteBill(Long id) {
     billRepository.deleteById(id);
   }
 

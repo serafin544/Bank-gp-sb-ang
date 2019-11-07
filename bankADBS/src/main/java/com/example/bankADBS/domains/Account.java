@@ -14,7 +14,7 @@ public class Account {
     private Long id;
 
     @Column(name="TYPE")
-    private Enum type;
+    private String type;
 
     @Column(name="NICKNAME")
     private String nickname;
@@ -28,6 +28,8 @@ public class Account {
     @ManyToOne
     @JoinColumn(name="CUSTOMER_ID")
     private Customer customer;
+
+
 
     public Account() {
     }
@@ -47,11 +49,11 @@ public class Account {
         this.id = id;
     }
 
-    public Enum getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -90,7 +92,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
+                "id=" + _id +
                 ", type=" + type +
                 ", nickname='" + nickname + '\'' +
                 ", rewards=" + rewards +
