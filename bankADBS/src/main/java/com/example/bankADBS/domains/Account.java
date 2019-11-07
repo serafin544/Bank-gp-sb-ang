@@ -6,18 +6,18 @@ import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import com.example.bankADBS.domains.Type;
 
 @Entity
 public class Account {
-    @Id
-    @GeneratedValue
-    @Column(name="ACCOUNT_ID")
-    private Long id;
 
+
+    @Id
+    @Column(name="ACCOUNT_ID")
+    private Long _id;
 
     @Column(name="TYPE")
-    private Enum type;
+    private String type;
 
     @Column(name="NICKNAME")
     private String nickname;
@@ -32,11 +32,13 @@ public class Account {
     @JoinColumn(name="CUSTOMER_ID")
     private Customer customer;
 
+
+
     public Account() {
     }
 
-    public Account(long id, Enum type, String nickname, int rewards, double balance, Customer customer) {
-        this.id = id;
+    public Account(Long _id, String type, String nickname, int rewards, double balance, Customer customer) {
+        this._id = _id;
         this.type = type;
         this.nickname = nickname;
         this.rewards = rewards;
@@ -44,19 +46,19 @@ public class Account {
         this.customer = customer;
     }
 
-    public long getId() {
-        return id;
+    public Long getId() {
+        return _id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Long id) {
+        this._id = id;
     }
 
-    public Enum getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -95,7 +97,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
+                "id=" + _id +
                 ", type=" + type +
                 ", nickname='" + nickname + '\'' +
                 ", rewards=" + rewards +

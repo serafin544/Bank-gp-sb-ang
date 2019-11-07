@@ -35,7 +35,7 @@ public class Deposit {
     public Deposit() {
     }
 
-    public Deposit(long id, String type, String transaction_date, String status, Long payee_id, String medium, Double amount, String description) {
+    public Deposit(Long id, String type, String transaction_date, String status, Long payee_id, String medium, Double amount, String description) {
         this.id = id;
         this.type = type;
         this.transaction_date = transaction_date;
@@ -46,7 +46,7 @@ public class Deposit {
         this.description = description;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

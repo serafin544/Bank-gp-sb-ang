@@ -18,7 +18,7 @@ public class CustomerController {
     @Autowired
     AccountService accountService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountid}/customer")
+    @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/customer")
     public List<Account> getCustomersAcct(@PathVariable Long id, @RequestBody Account account, @RequestBody Customer customer){
         return accountService.getAllCustomerAccounts(customerService.getCustomerById(id));
     }

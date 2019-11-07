@@ -14,7 +14,7 @@ public class Withdrawal {
   @Id
   @GeneratedValue
   @Column(name = "WITHDRAW_ID")
-  private Long id; //unique identifier for withdrawal
+  private Long _id; //unique identifier for withdrawal
 
   @Column(name = "TYPE")
   private String type; //type of transaction (pending, cancelled, completed)
@@ -38,11 +38,11 @@ public class Withdrawal {
   private String description; //description of withdrawal
 
   public Long getId() {
-    return id;
+    return _id;
   }
 
   public void setId(Long id) {
-    this.id = id;
+    this._id = _id;
   }
 
   public String getType() {
@@ -104,7 +104,7 @@ public class Withdrawal {
   @Override
   public String toString() {
     return "Withdrawal{" +
-      "id=" + id +
+      "id=" + _id +
       ", type='" + type + '\'' +
       ", transactionDate='" + transactionDate + '\'' +
       ", status='" + status + '\'' +

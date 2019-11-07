@@ -15,7 +15,7 @@ public class Customer {
     @Id
     @GeneratedValue
     @Column(name="CUSTOMER_ID")
-    private Long id;
+    private Long _id;
 
     @Column(name="FIRST_NAME")
     private String firstName;
@@ -31,20 +31,20 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(long id, String firstName, String lastName, Set<Address> addressSet) {
-        this.id = id;
+    public Customer(Long _id, String firstName, String lastName, Set<Address> addressSet) {
+        this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressSet = addressSet;
     }
 
 
-    public long getId() {
-        return id;
+    public Long getId() {
+        return _id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Long _id) {
+        this._id = _id;
     }
 
     public String getFirstName() {
@@ -74,7 +74,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
+                "id=" + _id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", addressSet=" + addressSet +

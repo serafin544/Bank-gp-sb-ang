@@ -11,7 +11,7 @@ public class Bills {
   @Id
   @GeneratedValue
   @Column(name="BILLS_ID")
-  private Long id; //bill unique identifier
+  private Long _id; //bill unique identifier
 
   @Column(name="STATUS")
   private String status;   //enumerated value showing bill status (pending, cancelled, completed, recurring)
@@ -44,10 +44,10 @@ public class Bills {
 
   }
 
-  public Bills(Long id, String status, String payee, String nickname, String creationDate, String paymentDate,
+  public Bills(Long _id, String status, String payee, String nickname, String creationDate, String paymentDate,
                Integer recurringDate, String upcomingPaymentDate, Double paymentAmount, String accountId)
   {
-    this.id = id;
+    this._id = _id;
     this.status = status;
     this.payee = payee;
     this.nickname = nickname;
@@ -60,11 +60,11 @@ public class Bills {
   }
 
   public Long getId() {
-    return id;
+    return _id;
   }
 
   public void setId(Long id) {
-    this.id = id;
+    this._id = _id;
   }
 
   public String getStatus() {
@@ -142,7 +142,7 @@ public class Bills {
   @Override
   public String toString() {
     return "Bills{" +
-      "id=" + id +
+      "id=" + _id +
       ", status='" + status + '\'' +
       ", payee='" + payee + '\'' +
       ", nickname='" + nickname + '\'' +
