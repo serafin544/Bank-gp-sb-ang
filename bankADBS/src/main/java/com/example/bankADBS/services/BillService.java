@@ -1,5 +1,6 @@
 package com.example.bankADBS.services;
 
+import com.example.bankADBS.domains.Account;
 import com.example.bankADBS.domains.Bills;
 import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.repository.BillRepository;
@@ -18,7 +19,8 @@ public class BillService {
 
 
   //get all bills for specific account
-  public List<Bills> getAllBills(Optional<Customer> customerById){
+
+  public List<Bills> allBillsByAccountId(long accountId){
     List<Bills> listOfBills = new ArrayList<>();
     billRepository.findAll().forEach(listOfBills::add);
     return listOfBills;
@@ -32,7 +34,7 @@ public class BillService {
 
 
   //get all bills for customer
-  public List<Bills> getAllBillsForCustomer(Optional<Customer> customerById) {
+  public List<Bills> allBillsByCustomerId(long customerId) {
     List<Bills> allBillsByCustomerId = new ArrayList<>();
     billRepository.findAll().forEach(allBillsByCustomerId::add);
     return allBillsByCustomerId;
