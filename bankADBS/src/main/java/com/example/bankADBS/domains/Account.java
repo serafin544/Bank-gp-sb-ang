@@ -14,7 +14,7 @@ public class Account {
     private Long id;
 
     @Column(name="TYPE")
-    private String type;
+    private Enum type;
 
     @Column(name="NICKNAME")
     private String nickname;
@@ -49,11 +49,11 @@ public class Account {
         this.id = id;
     }
 
-    public String getType() {
+    public Enum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Enum type) {
         this.type = type;
     }
 
@@ -92,7 +92,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + _id +
+                "id=" + id +
                 ", type=" + type +
                 ", nickname='" + nickname + '\'' +
                 ", rewards=" + rewards +

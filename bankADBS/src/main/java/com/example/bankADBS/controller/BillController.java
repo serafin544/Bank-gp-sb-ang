@@ -34,7 +34,7 @@ public class BillController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
-  public void addBill(@RequestBody Bills bills)}
+  public void addBill(@RequestBody Bills bills){
     billService.addBill(bills);
   }
 

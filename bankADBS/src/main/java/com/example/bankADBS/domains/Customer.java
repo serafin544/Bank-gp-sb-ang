@@ -70,7 +70,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + _id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", addressSet=" + addressSet +
