@@ -20,17 +20,11 @@ public class BillController {
   @Autowired
   private BillService billService;
 
-  @Autowired
-  private CustomerService customerService;
-
-  @Autowired
-  private AccountService accountService;
-
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/bills")
-  public Optional<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
-    return accountService.getAllCustomerAccounts(customerService.getCustomerById(billService.getBillsById(id)));
+  public List<Bills> getAllBillsForSpecificAccount(@PathVariable long id, @RequestBody Bills bills){
+    return billService.allBillsByAccountId(id);
   }
 
 
@@ -41,8 +35,8 @@ public class BillController {
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
-  public Optional<Customer> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
-    return customerService.getCustomerById()
+  public List<Bills> getAllBillsForCustomerById(@RequestBody Customer customer, @PathVariable long id, @RequestBody Bills bills){
+    return billService.allBillsByCustomerId(id);
   }
 
 
