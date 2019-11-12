@@ -29,11 +29,19 @@ public class BillController {
   @Autowired
   private BillRepository billRepository;
 
+
+
+
+
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
   public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id, @RequestBody Bills bills){
     List<Bills> billsByAccount = billRepository.findAccountById(id);
-    return new ResponseEntity<>(billsByAccount, HttpStatus.OK);
+    return new ResponseEntity<>(bills, HttpStatus.OK);
   }
+
+
+
+
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/bills/{id}")
@@ -41,11 +49,19 @@ public class BillController {
     return billService.getBillsById(id);
   }
 
+
+
+
+
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
   public ResponseEntity<?> getAllBillsForCustomerById(@PathVariable Long id, @RequestBody Bills bills){
     List<Bills> billsByCustomer = billRepository.findAccountById(id);
     return new ResponseEntity<>(billsByCustomer, HttpStatus.OK);
   }
+
+
+
+
 
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
