@@ -16,4 +16,9 @@ export class BankService {
   getBank(){
     return this.http.get('/server/api/bank')
   }
+
+  createDeposit(deposit){
+    let body = JSON.stringify(deposit);
+    return this.http.post('/server/api/bank', body, httpOptions);
+  }
 }
