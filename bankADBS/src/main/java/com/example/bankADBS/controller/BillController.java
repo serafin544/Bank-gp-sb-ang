@@ -29,39 +29,22 @@ public class BillController {
   @Autowired
   private BillRepository billRepository;
 
-
-
-
-
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
   public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id, @RequestBody Bills bills){
     List<Bills> billsByAccount = billRepository.findAccountById(id);
     return new ResponseEntity<>(bills, HttpStatus.OK);
   }
 
-
-
-
-
-
   @RequestMapping(method = RequestMethod.GET, value = "/bills/{id}")
   public Optional<Bills> getBillsById(@PathVariable Long id){
     return billService.getBillsById(id);
   }
-
-
-
-
 
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
   public ResponseEntity<?> getAllBillsForCustomerById(@PathVariable Long id, @RequestBody Bills bills){
     List<Bills> billsByCustomer = billRepository.findAccountById(id);
     return new ResponseEntity<>(billsByCustomer, HttpStatus.OK);
   }
-
-
-
-
 
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
@@ -80,12 +63,10 @@ public class BillController {
     return new ResponseEntity<>(bills, HttpStatus.CREATED);
   }
 
-
   @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")
   public ResponseEntity<?> updateBill(@RequestBody Bills bills, @PathVariable Long id){
     return new ResponseEntity<>(bills, HttpStatus.OK);
   }
-
 
   @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{id}")
   public ResponseEntity<?> deleteBill(@PathVariable Long id) {

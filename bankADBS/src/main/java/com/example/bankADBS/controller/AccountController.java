@@ -29,11 +29,14 @@ public class AccountController {
   
     @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/accounts")
     public List<Account> getAcctForCust(@PathVariable Long id){
-        return accountService.getAllCustomerAccounts(id);
+            return accountService.getAllCustomerAccounts(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/accounts")
-        public void addAccount(@RequestBody Account account) {accountService.addAccount(account); }
+        public void addAccount(@RequestBody Account account, @PathVariable Long id) {
+        account.setCustomer(id);
+        accountService.addAccount(account);
+    }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/accounts/{id}")
     public void updateAccount(@PathVariable Long id, @RequestBody Account account) {
