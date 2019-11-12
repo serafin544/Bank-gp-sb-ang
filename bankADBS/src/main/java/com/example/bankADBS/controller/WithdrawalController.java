@@ -3,11 +3,15 @@ package com.example.bankADBS.controller;
 import com.example.bankADBS.domains.Withdrawal;
 import com.example.bankADBS.services.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +23,7 @@ public class WithdrawalController {
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/withdrawals")
-  public List<Withdrawal> getAllWithdrawals(){
+  public List<Withdrawal> getAllWithdrawals(@PathVariable Long id){
     return withdrawalService.getAllWithdrawals();
   }
 
@@ -33,7 +37,7 @@ public class WithdrawalController {
 
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/withdrawals")
-  public void addWithdrawal(@RequestBody Withdrawal withdrawal){
+  public void addWithdrawal(@Valid @RequestBody Withdrawal withdrawal, @PathVariable Long id){
     withdrawalService.addWithdrawal(withdrawal);
   }
 
