@@ -1,1 +1,50 @@
-<p>deposit works!</p>
+<div class="container content deposit">
+    <form (ngSubmit)="submitDeposit()" [formGroup]="depositform" novalidate>
+        <div *ngIf="validMessage != ''">
+            <h3 class="has-info">{{validMessage}}</h3>
+        </div>
+        <div class="form-group">
+            <label>Deposit Id</label>
+            <input type="number" class="form-control" formControlName="id" required autofocus/>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select class="form-control" formControlName="type" required>
+                <option value="">Please select a deposit type</option>
+                <option *ngFor="let t of types" [value]="t">{{t}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Transation Date</label>
+            <input type="date" class="form-control" formControlName="date" required/>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select class="form-control" formControlName="status" required>
+                <option value="">Please select a deposit status</option>
+                <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Payee Id</label>
+            <input type="number" class="form-control" formControlName="payeeId" required/>
+        </div>
+        <div class="form-group">
+            <label>Medium</label>
+            <select class="form-control" formControlName="medium" required>
+                <option value="">Please select a deposit medium</option>
+                <option *ngFor="let m of mediums" [value]="m">{{m}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="number" class="form-control" formControlName="amount" required/>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" formControlName="description" required/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
