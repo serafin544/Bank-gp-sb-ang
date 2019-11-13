@@ -1,11 +1,8 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Bills;
-import com.example.bankADBS.domains.Customer;
 import com.example.bankADBS.repository.BillRepository;
-import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.BillService;
-import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +25,8 @@ public class BillController {
   private BillRepository billRepository;
 
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
-  public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id, @RequestBody Bills bills){
+  public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id, @RequestBody Bills bills)
+  {
     List<Bills> billsByAccount = billRepository.findAccountById(id);
     return new ResponseEntity<>(bills, HttpStatus.OK);
   }
@@ -60,7 +56,7 @@ public class BillController {
       .toUri();
     responseHeaders.setLocation(newPollUri);
 
-    return new ResponseEntity<>(bills, HttpStatus.CREATED);
+    return new ResponseEntity<>(, HttpStatus.CREATED);
   }
 
   @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")

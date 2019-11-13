@@ -1,11 +1,11 @@
 package com.example.bankADBS.domains.response;
 
-public class Response {
+public class ResponseStateReturn {
     private int code;
     private String message;
     private Object data;
 
-    public Response(int code, String message, Object data) {
+    public ResponseStateReturn(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
