@@ -2,9 +2,12 @@ package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Account;
 import com.example.bankADBS.domains.Customer;
+import com.example.bankADBS.domains.response.ResponseStateReturn;
 import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +21,54 @@ public class CustomerController {
     @Autowired
     AccountService accountService;
 
+
+
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/customer")
-    public List<Account> getCustomersAcct(@PathVariable Long id){
-        return accountService.getAllCustomerAccounts(id);
+    public ResponseEntity<?> getCustomersAcct(@PathVariable Long id){
+        ResponseStateReturn rep = new ResponseStateReturn();
+        List<Account> customerAccts = accountService.getAllCustomerAccounts(id);
+        if(!customerAccts.isEmpty()){
+            rep.setCode(HttpStatus.OK.value());
+            rep.setMessage("Success");
+            rep.setData(customerAccts);
+            return new ResponseEntity<>(rep,HttpStatus.OK);
+        }else{
+            rep.setCode(HttpStatus.NOT_FOUND.value());
+            return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+        }
+
+
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/customers")
-    public List<Customer> getListCustomers(){
-        return customerService.getAllCustomers();
+    public ResponseEntity<?> getListCustomers(){
+        ResponseStateReturn rep = new ResponseStateReturn();
+        List<Customer> allCustomers = customerService.getAllCustomers();
+       if(!allCustomers.isEmpty()){
+           rep.setCode(HttpStatus.OK.value());
+           rep.setMessage("Success");
+           rep.setData(allCustomers);
+           return new ResponseEntity<>(rep,HttpStatus.OK);
+       }else{
+           rep.setCode(HttpStatus.NOT_FOUND.value());
+           return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+       }
+
     }
     @RequestMapping(method = RequestMethod.GET, value = "/customers/{id}")
-    public Optional<Customer> getCustId(@PathVariable Long id){
-        return customerService.getCustomerById(id);
+    public ResponseEntity<?> getCustId(@PathVariable Long id){
+        Optional<Customer> CertainCustomer = customerService.getCustomerById(id);
+        ResponseStateReturn rep = new ResponseStateReturn();
+        if(CertainCustomer.isPresent()){
+            rep.setCode(HttpStatus.OK.value());
+            rep.setMessage("Success");
+            rep.setData(CertainCustomer);
+            return new ResponseEntity<>(rep,HttpStatus.OK);
+        }else{
+            rep.setCode(HttpStatus.NOT_FOUND.value());
+            return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/customers")

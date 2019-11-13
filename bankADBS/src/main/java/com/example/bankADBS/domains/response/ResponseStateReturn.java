@@ -1,9 +1,14 @@
 package com.example.bankADBS.domains.response;
 
+import org.springframework.http.HttpStatus;
+
 public class ResponseStateReturn {
     private int code;
     private String message;
     private Object data;
+    public ResponseStateReturn(){
+
+    }
 
     public ResponseStateReturn(int code, String message, Object data) {
         this.code = code;

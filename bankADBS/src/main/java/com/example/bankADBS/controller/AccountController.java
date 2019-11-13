@@ -1,10 +1,11 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Account;
-import com.example.bankADBS.domains.response.Response;
+import com.example.bankADBS.domains.response.ResponseStateReturn;
 import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,6 +23,8 @@ public class AccountController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts")
     public List<Account> getAllAccts(Account accounts){
+
+
         return accountService.getAllAccounts(accounts);
     }
 

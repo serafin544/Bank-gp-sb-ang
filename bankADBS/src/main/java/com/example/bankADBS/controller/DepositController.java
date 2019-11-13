@@ -1,6 +1,7 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Deposit;
+import com.example.bankADBS.domains.response.ResponseStateReturn;
 import com.example.bankADBS.services.DepositService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,19 +21,30 @@ public class DepositController {
     @Autowired
     private DepositService depositService;
 
-    @RequestMapping(method=RequestMethod.GET, value="/accounts/{accountId}/deposits")
+  @RequestMapping(method=RequestMethod.GET, value="/accounts/{accountId}/deposits")
     public ResponseEntity<?> getAllDepositsForAccount(@PathVariable Long accountId){
+        ResponseStateReturn rep = new ResponseStateReturn();
         List<Deposit> allDeposits = depositService.getAllDepositsForAccount(accountId);
+
         if(!allDeposits.isEmpty())
-            return new ResponseEntity<>(allDeposits, HttpStatus.OK);
+        {
+            rep.setCode(HttpStatus.OK.value());
+            rep.setMessage("Success");
+            rep.setData(allDeposits);
+            return new ResponseEntity<>(rep, HttpStatus.OK);
+        }
         else
-            return new ResponseEntity<>("Message: Error fetching deposits", HttpStatus.INTERNAL_SERVER_ERROR);
+        {
+            rep.setCode(HttpStatus.NOT_FOUND.value());
+            return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/deposits/{depositId}")
     public ResponseEntity<?> getDeposit(@PathVariable Long depositId){
         Optional<Deposit> deposit = depositService.getDepositById(depositId);
         if(deposit.isPresent())
+
             return new ResponseEntity<>(deposit, HttpStatus.OK);
         else
             return new ResponseEntity<>("Message: Error fetching deposits", HttpStatus.INTERNAL_SERVER_ERROR);

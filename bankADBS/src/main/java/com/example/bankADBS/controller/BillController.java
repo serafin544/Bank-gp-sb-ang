@@ -56,7 +56,7 @@ public class BillController {
       .toUri();
     responseHeaders.setLocation(newPollUri);
 
-    return new ResponseEntity<>(, HttpStatus.CREATED);
+    return new ResponseEntity<>(bills, HttpStatus.CREATED);
   }
 
   @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")
