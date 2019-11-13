@@ -14,25 +14,31 @@ public class DepositService {
     @Autowired
     private Depository depository;
 
-    public List<Deposit> getAllDeposits(Long accountId) {
+    public List<Deposit> getAllDepositsForAccount(Long accountId) {
         List<Deposit> listOfDeposits = new ArrayList<>();
         depository.findAll().forEach(listOfDeposits::add);
-        return listOfDeposits;
+
+        List<Deposit> validDeposits = new ArrayList<>();
+        for(Deposit d : listOfDeposits){
+            if(d.getPayee_id() == accountId)
+                validDeposits.add(d);
+        }
+        return validDeposits;
     }
 
     public Optional<Deposit> getDepositById(Long depositId) {
         return depository.findById(depositId);
     }
 
-    public void addDeposit(Deposit deposit, Long accountId) {
-        depository.save(deposit);
-    }
+    public Deposit addDeposit(Deposit deposit, Long accountId) { return depository.save(deposit); }
 
-    public void updateDeposit(Deposit deposit, Long depositId) {
-        depository.save(deposit);
+    public Deposit updateDeposit(Deposit deposit, Long depositId) {
+        return depository.save(deposit);
     }
 
     public void deleteDeposit(Long depositId) {
         depository.deleteById(depositId);
     }
+
+    //private static boolean findAccount(Deposit d, Long accountId) { return d.getPayee_id() == id; }
 }
