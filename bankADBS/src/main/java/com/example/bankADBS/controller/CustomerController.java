@@ -35,6 +35,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/customers")
     public void addCustomer(@RequestBody Customer customer){
+        System.out.println(customer);
         customerService.addCustomer(customer);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/customers/{id}")

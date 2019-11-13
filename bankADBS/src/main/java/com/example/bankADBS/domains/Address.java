@@ -1,14 +1,15 @@
 package com.example.bankADBS.domains;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "ADDRESS_TABLE")
 public class Address {
 
+
     @Id
-    @Column(name="ADDRESS_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name= "ADDRESS_ID")
     private Long id;
 
     @Column(name="STREET_NUMBER")

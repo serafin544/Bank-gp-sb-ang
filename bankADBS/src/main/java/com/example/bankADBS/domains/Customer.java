@@ -3,13 +3,16 @@ package com.example.bankADBS.domains;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import java.util.Set;
 
 @Entity
+@Table(name = "CUSTOMER_TABLE")
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="CUSTOMER_ID")
     private Long id;
 
@@ -19,19 +22,19 @@ public class Customer {
     @Column(name="LAST_NAME")
     private String lastName;
 
-    @ElementCollection
-    @OneToMany
-    @JoinColumn(name="ADDRESS_ID")
-    private Set<Address> addressSet;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Size(min = 1, max = 10)
+    @OrderBy
+    private Set<Address> address;
 
     public Customer() {
     }
 
-    public Customer(Long id, String firstName, String lastName, Set<Address> addressSet) {
+    public Customer(Long id, String firstName, String lastName, Set<Address> address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addressSet = addressSet;
+        this.address = address;
     }
 
 
@@ -59,12 +62,12 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public Set<Address> getAddressSet() {
-        return addressSet;
+    public Set<Address> getAddress() {
+        return address;
     }
 
-    public void setAddressSet(Set<Address> addressSet) {
-        this.addressSet = addressSet;
+    public void setAddress(Set<Address> address) {
+        this.address = address;
     }
 
     @Override
@@ -73,7 +76,7 @@ public class Customer {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addressSet=" + addressSet +
+                ", addressSet=" + address +
                 '}';
     }
 }

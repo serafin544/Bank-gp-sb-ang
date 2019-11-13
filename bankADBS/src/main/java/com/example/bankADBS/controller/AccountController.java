@@ -1,10 +1,12 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Account;
+import com.example.bankADBS.domains.response.Response;
 import com.example.bankADBS.services.AccountService;
 import com.example.bankADBS.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,7 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
+
     @Autowired
     private CustomerService customerService;
 
@@ -34,6 +37,7 @@ public class AccountController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/accounts")
         public void addAccount(@RequestBody Account account, @PathVariable Long id) {
+
         account.setCustomer(id);
         accountService.addAccount(account);
     }
