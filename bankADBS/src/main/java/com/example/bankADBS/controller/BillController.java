@@ -1,8 +1,10 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Bills;
+import com.example.bankADBS.domains.response.ResponseStateReturn;
 import com.example.bankADBS.repository.BillRepository;
 import com.example.bankADBS.services.BillService;
+import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,38 +23,61 @@ public class BillController {
   @Autowired
   private BillService billService;
 
-  @Autowired
-  private BillRepository billRepository;
 
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{id}/bills")
-  public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id, @RequestBody Bills bills)
+  public ResponseEntity<?> getAllBillsByAccountId(@PathVariable Long id)
   {
-    List<Bills> billsByAccount = billRepository.findAccountById(id);
-    return new ResponseEntity<>(bills, HttpStatus.OK);
+    List<Bills> b = billService.allBillsByAccountId(id);
+    ResponseStateReturn rep = new ResponseStateReturn();
+    if(!b.isEmpty()){
+      rep.setCode(HttpStatus.OK.value());
+      rep.setMessage("Success");
+      rep.setData(b);
+      return new ResponseEntity<>(rep,HttpStatus.OK);
+    }else{
+      rep.setCode(HttpStatus.NOT_FOUND.value());
+      return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+    }
+
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/bills/{id}")
-  public Optional<Bills> getBillsById(@PathVariable Long id){
-    return billService.getBillsById(id);
-  }
+  public ResponseEntity<?> getBillsById(@PathVariable Long id){
+    Optional<Bills> b = billService.getBillsById(id);
+    ResponseStateReturn rep = new ResponseStateReturn();
+    if(b.isPresent()) {
+      return new ResponseEntity<>(b, HttpStatus.OK);
+    }else {
+      return new ResponseEntity<>("Message: Error fetching Bills", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    }
 
   @RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/bills")
-  public ResponseEntity<?> getAllBillsForCustomerById(@PathVariable Long id, @RequestBody Bills bills){
-    List<Bills> billsByCustomer = billRepository.findAccountById(id);
-    return new ResponseEntity<>(billsByCustomer, HttpStatus.OK);
+  public ResponseEntity<?> getAllBillsForCustomerById(@PathVariable Long customerId){
+    List<Bills> b = billService.allBillsByCustomerId(customerId);
+    ResponseStateReturn rep = new ResponseStateReturn();
+    if (!b.isEmpty()) {
+      rep.setCode(HttpStatus.OK.value());
+      rep.setMessage("Success");
+      rep.setData(b);
+      return new ResponseEntity<>(rep, HttpStatus.OK);
+    } else
+    {
+      rep.setCode(HttpStatus.NOT_FOUND.value());
+      return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+    }
   }
 
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/bills")
-  public ResponseEntity<?> addBill(@Valid @RequestBody Bills bills){
+  public ResponseEntity<?> addBill( @RequestBody Bills bills, @PathVariable Long accountId){
 
-    bills = billRepository.save(bills);
-
+   Bills b = billService.addBill(bills,accountId);
     HttpHeaders responseHeaders = new HttpHeaders();
     URI newPollUri = ServletUriComponentsBuilder
       .fromCurrentRequest()
       .path("/{id}")
-      .buildAndExpand(bills.getId())
+      .buildAndExpand(b.getId())
       .toUri();
     responseHeaders.setLocation(newPollUri);
 
@@ -61,7 +86,8 @@ public class BillController {
 
   @RequestMapping(method = RequestMethod.PUT, value = "/bills/{id}")
   public ResponseEntity<?> updateBill(@RequestBody Bills bills, @PathVariable Long id){
-    return new ResponseEntity<>(bills, HttpStatus.OK);
+    Bills updateBill = billService.updateBill(bills,id);
+    return new ResponseEntity<>( HttpStatus.OK);
   }
 
   @RequestMapping(method = RequestMethod.DELETE, value = "/bills/{id}")

@@ -1,17 +1,21 @@
 package com.example.bankADBS.controller;
 
 import com.example.bankADBS.domains.Withdrawal;
+import com.example.bankADBS.domains.response.ResponseStateReturn;
 import com.example.bankADBS.services.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import javax.xml.ws.Response;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,36 +27,69 @@ public class WithdrawalController {
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/accounts/{accountId}/withdrawals")
-  public List<Withdrawal> getAllWithdrawals(@PathVariable Long id){
-    return withdrawalService.getAllWithdrawals();
+  public ResponseEntity<?>  getAllWithdrawals(@PathVariable Long accountId){
+    List<Withdrawal> w = withdrawalService.getAllWithdrawals(accountId);
+    ResponseStateReturn rep = new ResponseStateReturn();
+
+    if(!w.isEmpty())
+    {
+      rep.setCode(HttpStatus.OK.value());
+      rep.setMessage("Success");
+      rep.setData(w);
+      return new ResponseEntity<>(rep, HttpStatus.OK);
+    }
+    else
+    {
+      rep.setCode(HttpStatus.NOT_FOUND.value());
+      return new ResponseEntity<>(rep, HttpStatus.NOT_FOUND);
+    }
   }
 
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/withdrawals/{withdrawalId}")
-  public Optional<Withdrawal> getWithdrawalById(@PathVariable Long id){
-    return withdrawalService.getWithdrawalById(id);
+  public ResponseEntity<?> getWithdrawal(@PathVariable Long withdrawalId){
+    Optional<Withdrawal> w = withdrawalService.getWithdrawalById(withdrawalId);
+    if(w.isPresent()) {
+      return new ResponseEntity<>(w, HttpStatus.OK);
+    }else {
+      return new ResponseEntity<>("Message: Error fetching Withdrawal", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
 
 
   @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/withdrawals")
-  public void addWithdrawal(@Valid @RequestBody Withdrawal withdrawal, @PathVariable Long id){
-    withdrawalService.addWithdrawal(withdrawal);
+  public ResponseEntity<?> addDeposit(@RequestBody Withdrawal deposit, @PathVariable Long accountId){
+    Withdrawal w = withdrawalService.addWithdrawal(deposit, accountId);
+    if(w != null){
+      HttpHeaders responseHeaders = new HttpHeaders();
+      URI newPollUri = ServletUriComponentsBuilder
+              .fromCurrentRequest()
+              .path("/{id}")
+              .buildAndExpand(w.getId())
+              .toUri();
+      responseHeaders.setLocation(newPollUri);
+      return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+    else
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
 
 
   @RequestMapping(method = RequestMethod.PUT, value = "/withdrawals/{withdrawalId}")
-  public void updateWithdrawal(@PathVariable long id, @RequestBody Withdrawal withdrawal){
-    withdrawalService.updateWithdrawal(id, withdrawal);
+  public ResponseEntity<?> updateWithdrawal( @RequestBody Withdrawal withdrawal, @PathVariable Long withdrawalId){
+   Withdrawal updateWithdraw = withdrawalService.updateWithdrawal(withdrawal, withdrawalId);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
 
 
   @RequestMapping(method = RequestMethod.DELETE, value = "/withdrawals/{withdrawalId}")
-  public void deleteWithdrawal(@PathVariable long id) {
-    withdrawalService.deleteWithdrawal(id);
+  public ResponseEntity<?> deleteWithdrawal(@PathVariable Long withdrawalId) {
+    withdrawalService.deleteWithdrawal(withdrawalId);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
 }

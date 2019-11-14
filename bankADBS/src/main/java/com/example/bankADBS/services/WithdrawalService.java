@@ -18,30 +18,40 @@ public class WithdrawalService {
 
 
   //get all withdrawals for a specific account
-  public List<Withdrawal> getAllWithdrawals(){
+  public List<Withdrawal> getAllWithdrawals(Long accountId){
     List<Withdrawal> listOfWithdrawals = new ArrayList<>();
     withdrawalRepository.findAll().forEach(listOfWithdrawals::add);
-    return listOfWithdrawals;
+
+    List<Withdrawal> valid = new ArrayList<>();
+    for(Withdrawal w : listOfWithdrawals){
+      if(w.getPayerId() == accountId){
+        valid.add(w);
+      }
+    }
+    return valid;
   }
 
   //get withdrawal by id
-  public Optional<Withdrawal> getWithdrawalById(long id){
-    return withdrawalRepository.findById(id);
+  public Optional<Withdrawal> getWithdrawalById(Long withdrawalId){
+
+    return withdrawalRepository.findById(withdrawalId);
   }
 
   //create a withdrawal
-  public void addWithdrawal(Withdrawal withdrawal) {
-    withdrawalRepository.save(withdrawal);
+  public Withdrawal addWithdrawal(Withdrawal withdrawal, Long accountId) {
+    return withdrawalRepository.save(withdrawal);
   }
 
   //update a specific existing withdrawal
-  public void updateWithdrawal(long id, Withdrawal withdrawal) {
-    withdrawalRepository.save(withdrawal);
+  public Withdrawal updateWithdrawal( Withdrawal withdrawal, Long withdrawalId) {
+
+    return withdrawalRepository.save(withdrawal);
   }
 
   //delete a specific existing withdrawal
-  public void deleteWithdrawal(long id) {
-    withdrawalRepository.deleteById(id);
+  public void deleteWithdrawal(Long withdrawalId) {
+
+    withdrawalRepository.deleteById(withdrawalId);
   }
 
 }

@@ -28,7 +28,7 @@ public class AccountService {
 // Get All Customer Accounts
     public List<Account> getAllCustomerAccounts(Long id){
         List<Account> accountList = new ArrayList<>();
-        accountRepository.findAccountById(id).forEach(accountList::add);
+        accountRepository.findAccountByCustomerId(id).forEach(accountList::add);
         return accountList;
     }
 
@@ -39,12 +39,12 @@ public class AccountService {
 
 
     //Create Account
-    public void addAccount(Account account){
-        accountRepository.save(account);
+    public Account addAccount(Account account, Long id){
+        return accountRepository.save(account);
     }
     //Update Account
-    public void updateAccount(Account account, Long id){
-        accountRepository.save(account);
+    public Account updateAccount(Account account, Long id){
+        return accountRepository.save(account);
     }
 
     // Delete By Id

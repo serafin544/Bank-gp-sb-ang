@@ -3,13 +3,15 @@ package com.example.bankADBS.domains;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "WITHDRAWAL_TABLE")
 public class Withdrawal {
 
   @Id
   @Column(name = "WITHDRAW_ID")
-  private Long _id; //unique identifier for withdrawal
+  private Long id; //unique identifier for withdrawal
 
   @Column(name = "TYPE")
   private String type; //type of transaction (pending, cancelled, completed)
@@ -33,11 +35,11 @@ public class Withdrawal {
   private String description; //description of withdrawal
 
   public Long getId() {
-    return _id;
+    return id;
   }
 
   public void setId(Long id) {
-    this._id = _id;
+    this.id = id;
   }
 
   public String getType() {
@@ -99,7 +101,7 @@ public class Withdrawal {
   @Override
   public String toString() {
     return "Withdrawal{" +
-      "id=" + _id +
+      "id=" + id +
       ", type='" + type + '\'' +
       ", transactionDate='" + transactionDate + '\'' +
       ", status='" + status + '\'' +

@@ -3,6 +3,7 @@ package com.example.bankADBS.domains;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "DEPOSIT_TABLE")
 public class Deposit {
 
     @Id

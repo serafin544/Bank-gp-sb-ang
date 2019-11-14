@@ -27,12 +27,16 @@ public class DepositService {
     }
 
     public Optional<Deposit> getDepositById(Long depositId) {
+
         return depository.findById(depositId);
     }
 
-    public Deposit addDeposit(Deposit deposit, Long accountId) { return depository.save(deposit); }
+    public Deposit addDeposit(Deposit deposit, Long accountId) {
+        return depository.save(deposit);
+    }
 
     public Deposit updateDeposit(Deposit deposit, Long depositId) {
+
         return depository.save(deposit);
     }
 
